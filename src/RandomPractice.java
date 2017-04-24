@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -36,6 +35,24 @@ public class RandomPractice {
 //                .collect(groupingBy(x-> {
 //
 //                }));
+
+        int inputNumber;
+
+        System.out.print("주사위를 몇번 던지시겠습니까? ");
+        Scanner input = new Scanner(System.in);
+
+        inputNumber = Integer.parseInt(input.nextLine());
+
+        Map<Integer, Long> listMap =
+                r.ints(1,7)
+                        .limit(inputNumber)
+                        .boxed()
+                        .peek(System.out::println)
+                        .collect(Collectors.groupingBy(
+                                Function.identity(), Collectors.counting()));
+
+        System.out.println("각 숫자는 몇번씩 나왔을까요? : " + listMap);
+
 
 
 
